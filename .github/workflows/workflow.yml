@@ -35,6 +35,7 @@ jobs:
     
     - run: |
          pwd
+         cd config
          ls
          export CONTAINER_REGISTRY=${{ env.AZURE-CONTAINER-REGISTRY }}
          export IMAGE_TAG=${{ env.IMAGE_TAG }}
