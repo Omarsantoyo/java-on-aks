@@ -37,16 +37,18 @@ jobs:
          pwd
          cd config
          ls
-         export CONTAINER_REGISTRY=${{ env.AZURE-CONTAINER-REGISTRY }}
+         export CONTAINER_REGISTRY=mypiggy
          export IMAGE_TAG=${{ env.IMAGE_TAG }}
          echo 'Install ACR AAD credential helper and login'
           curl -L https://aka.ms/acr/installaad/bash | /bin/bash
-          az acr login -n ${{ env.AZURE-CONTAINER-REGISTRY }}
+          az acr login -n mypiggy
+          echo 'Logged to acr'
           echo 'Start Build'
           cd config
-          mvn compile jib:build \
-              -Djib.container.environment=CONFIG_SERVICE_PASSWORD=${{ env.CONFIG-SERVICE-PASSWORD }} 
-
+          mvn compile jib:build  
+          
+          echo 'config BUILED'
+          
           cd ../registry
           mvn compile jib:build 
 
@@ -57,16 +59,13 @@ jobs:
           mvn compile jib:build 
           
           cd ../account-service
-          mvn compile jib:build \
-              -Djib.container.environment=ACCOUNT_SERVICE_PASSWORD=${{ env.ACCOUNT-SERVICE-PASSWORD }} 
+          mvn compile jib:build  
                
           cd ../statistics-service
-          mvn compile jib:build \
-              -Djib.container.environment=STATISTICS_SERVICE_PASSWORD=${{ env.STATISTICS-SERVICE-PASSWORD }} 
+          mvn compile jib:build
 
           cd ../notification-service
-          mvn compile jib:build \
-              -Djib.container.environment=NOTIFICATION_SERVICE_PASSWORD=${{ env.NOTIFICATION-SERVICE-PASSWORD }} 
+          mvn compile jib:build 
 
           echo 'Build complete'
       
