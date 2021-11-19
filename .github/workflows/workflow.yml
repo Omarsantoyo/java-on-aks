@@ -25,17 +25,17 @@ jobs:
     steps:
     - uses: actions/checkout@master
     
-    # Fetch secrets from Azure Key Vault
-    - uses: Azure/login@v1
+    - name: 'Az CLI login'
+      uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
-    - name: Azure key vault - Get Secrets
-      uses: azure/get-keyvault-secrets@v1
-      with:
-       keyvault: ${{ secrets.AZURE_KEY_VAULT }}
-       secrets:  '*'
+        environment: azurecloud
+        enable-AzPSSession: true
+        allow-no-subscriptions: true
     
     - run: |
+         pwd
+         ls
          export CONTAINER_REGISTRY=${{ env.AZURE-CONTAINER-REGISTRY }}
          export IMAGE_TAG=${{ env.IMAGE_TAG }}
          echo 'Install ACR AAD credential helper and login'
