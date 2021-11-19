@@ -46,7 +46,7 @@
 						<image>mcr.microsoft.com/java/jre-headless:8u232-zulu-alpine</image>
 					</from>
 					<to>
-						<image>${CONTAINER_REGISTRY}.azurecr.io/${parent.artifactId}-${project.name}:${IMAGE_TAG}</image>
+						<image>$mypiggy.azurecr.io/${parent.artifactId}-${project.name}:v1
 					</to>
 					<container>
 						<jvmFlags>
