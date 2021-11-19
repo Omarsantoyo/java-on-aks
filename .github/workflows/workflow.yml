@@ -39,7 +39,8 @@ jobs:
           echo 'Logged to acr'
           echo 'Start Build'
           cd config
-          mvn compile jib:build  
+          mvn compile jib:build \
+              -Djib.container.environment=CONFIG_SERVICE_PASSWORD=password  
           
           echo 'config BUILED'
           
