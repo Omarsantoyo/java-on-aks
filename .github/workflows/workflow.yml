@@ -34,9 +34,6 @@ jobs:
         allow-no-subscriptions: true
     
     - run: |
-         pwd
-         cd config
-         ls
          export CONTAINER_REGISTRY=mypiggy
          export IMAGE_TAG=${{ env.IMAGE_TAG }}
          echo 'Install ACR AAD credential helper and login'
