@@ -26,7 +26,7 @@ jobs:
     - uses: actions/checkout@master
     
     - name: 'Az CLI login'
-      uses: azure/CLI@v1
+      uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
         environment: azurecloud
@@ -34,6 +34,7 @@ jobs:
         allow-no-subscriptions: true
     
     - run: |
+          az login
           az acr login -n mypiggy
           echo 'Logged to acr'
           echo 'Start Build'
