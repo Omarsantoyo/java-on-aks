@@ -34,8 +34,7 @@ jobs:
         allow-no-subscriptions: true
     
     - run: |
-         export CONTAINER_REGISTRY=mypiggy
-         export IMAGE_TAG=${{ env.IMAGE_TAG }}
+          az login
           az acr login -n mypiggy
           echo 'Logged to acr'
           echo 'Start Build'
